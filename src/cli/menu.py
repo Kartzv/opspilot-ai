@@ -40,11 +40,27 @@ def iniciarMenu() :
             cadastrar_contato(contatos)
             continue
         elif resposta == 2 :
-            print("Listar contatos")
+            print(contatos)
             continue
         elif resposta == 3 :
-            print("Buscar contato por telefone")
-            continue
+            
+            qual_telefone = input("Digite aqui o telefone que você deseja buscar : ")
+            resultado = False
+            for lead in contatos :
+                telefone = lead["telefone"]
+                
+                if telefone == qual_telefone :
+                    resultado = True
+                    break
+            
+            if resultado is True :
+                print("Concluido o lead foi achado\n"
+                      f"{lead}"
+                      )
+                continue
+            else :
+                print(f"Desculpe não achei nenhum lead com esse telefone : {qual_telefone}")
+                continue
         elif resposta == 0 :
             print("Até mais")
             break
