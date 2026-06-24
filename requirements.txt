@@ -1,0 +1,9 @@
+# Dependencias serao adicionadas conforme o projeto evoluir.
+# Fase futura:
+# pytest
+# fastapi
+# uvicorn
+# psycopg
+# python-dotenv
+# langchain
+# openai
