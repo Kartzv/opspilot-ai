@@ -8,7 +8,7 @@ TODO Fase 1:
 - manter a regra de negocio fora deste arquivo.
 """
 
-from procedural.contact_functions import cadastrar_contato
+from procedural.contact_functions import cadastrar_contato, listarContatos, buscaLead
 
 def iniciarMenu() :
     contatos = []
@@ -40,27 +40,9 @@ def iniciarMenu() :
             cadastrar_contato(contatos)
             continue
         elif resposta == 2 :
-            print(contatos)
-            continue
+            listarContatos(contatos)
         elif resposta == 3 :
-            
-            qual_telefone = input("Digite aqui o telefone que você deseja buscar : ")
-            resultado = False
-            for lead in contatos :
-                telefone = lead["telefone"]
-                
-                if telefone == qual_telefone :
-                    resultado = True
-                    break
-            
-            if resultado is True :
-                print("Concluido o lead foi achado\n"
-                      f"{lead}"
-                      )
-                continue
-            else :
-                print(f"Desculpe não achei nenhum lead com esse telefone : {qual_telefone}")
-                continue
+            buscaLead(contatos)
         elif resposta == 0 :
             print("Até mais")
             break

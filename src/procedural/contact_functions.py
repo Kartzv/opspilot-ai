@@ -51,3 +51,34 @@ def cadastrar_contato(contatos):
         contatos.append(contato)
         print("Contato foi adicionado com sucesso!")
         break
+
+def listarContatos(contatos) :
+        quantidade_leads = 0
+
+        if len(contatos) < 1 :
+            print("Nenhum contato encontrado")
+            return
+        
+        for lead in contatos :
+            print(f"Lead : {quantidade_leads + 1 }")
+            for chave, valor in lead.items() :
+                print(f"{chave} : {valor}")
+            quantidade_leads += 1
+
+def buscaLead(contatos) :
+    qual_telefone = input("Digite aqui o telefone que você deseja buscar : ")
+    resultado = False
+    lead_encontrado = None
+    for lead in contatos :
+        telefone = lead["telefone"]
+                    
+        if telefone == qual_telefone :
+            resultado = True
+            lead_encontrado = lead
+            break
+                
+    if resultado is True :
+        print("Concluido, o lead foi achado:")
+        print(lead_encontrado)
+    else :
+        print(f"Desculpe não achei nenhum lead com esse telefone : {qual_telefone}")
