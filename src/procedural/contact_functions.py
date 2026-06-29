@@ -17,6 +17,32 @@ TODO Fase 1:
 - criar funcao para buscar contato por telefone;
 - criar funcao para detectar contatos duplicados.
 """
+def verifica_id(contatos):
+    lista_id = set()
+
+    for contato in contatos:
+        id_contato = contato["id"]
+        lista_id.add(id_contato)
+
+    if len(lista_id) > 0:
+        return max(lista_id) + 1
+    else:
+        return 1
+
+
+def verifica_telefone(contatos, telefone):
+    telefone_novo = telefone
+
+    for contato in contatos:
+        telefone_existente = contato["telefone"]
+
+        if telefone_existente == telefone_novo:
+            print("Esse telefone já existe na base de dados.")
+            return None
+
+    return telefone_novo
+
+
 def cadastrar_contato(contatos):
     print("Preciso de apenas 4 itens. Responda abaixo, por favor.")
 
@@ -33,6 +59,11 @@ def cadastrar_contato(contatos):
             print("Digite apenas números no telefone.")
             continue
 
+        telefone_validado = verifica_telefone(contatos, telefone)
+
+        if telefone_validado is None:
+            continue
+
         email = input("Digite o email do lead: ")
 
         if "@" not in email:
@@ -42,8 +73,9 @@ def cadastrar_contato(contatos):
         origem = input("Digite a origem do lead: ")
 
         contato = {
+            "id": verifica_id(contatos),
             "nome": nome,
-            "telefone": telefone,
+            "telefone": telefone_validado,
             "email": email,
             "origem": origem,
         }
